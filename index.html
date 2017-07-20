@@ -76,256 +76,61 @@
     <div id="container">
       <div id="main">
 
-   
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2017/07/20/js函数/" title="" itemprop="url">
+  
+    <h1 itemprop="name"></h1>
     
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
+     
+           <p itemprop="description" >对JavaScript中函数的一些理解函数的传入参数   虽然在函数定义时会规定传入的参数，但在实际使用时并不在意这个规定（个数和类型），++可以任意传入参数++。因为在ECMAScript中参数使用内部的==argument对象==（与数组类似）表示的。函数体通过argumen</p>
+        
     
-      <a href="/2017/07/20/js函数/" title="" itemprop="url"></a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="yanghanying" target="_blank" itemprop="author">yanghanying</a>
-		
-  <p class="article-time">
-    <time datetime="2017-07-20T08:42:43.035Z" itemprop="datePublished"> 发表于 2017-07-20</time>
+    <time datetime="2017-07-20T08:42:43.035Z" itemprop="datePublished">2017-07-20</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2017/07/20/js面向对象/" title="" itemprop="url">
+  
+    <h1 itemprop="name"></h1>
     
-  </p>
-</header>
-    <div class="article-content">
+     
+           <p itemprop="description" >对JavaScript的面向对象的一些理解在其他面型对象语言中，都有类的概念，通过类来创建多个对象，这些对象有相同的属性和方法（在类中规定的）。可以理解为这些对象是同一个类型的。
+但是ECMAScript的面向对象与其他语言有所不同，因为在JavaScript中并没有类的概念。这</p>
         
-        <h1 id="对JavaScript中函数的一些理解"><a href="#对JavaScript中函数的一些理解" class="headerlink" title="对JavaScript中函数的一些理解"></a>对JavaScript中函数的一些理解</h1><h3 id="函数的传入参数"><a href="#函数的传入参数" class="headerlink" title="函数的传入参数"></a>函数的传入参数</h3><p>   虽然在函数定义时会规定传入的参数，但在实际使用时并不在意这个规定（个数和类型），++可以任意传入参数++。因为在ECMAScript中参数使用内部的==argument对象==（与数组类似）表示的。函数体通过argument对象来访问数组，获取参数。在调用时实际上传入了几个，都会被装进这个数组（EMCAScript中的数组的每一项都可以保存任何类型）。传入的第一个参数是argument[0]…,实际传入了几个，通过访问argument.length访问。<br>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">  function doAdd(n)&#123;</div><div class="line">  alert(arguments[0]+arguments[1]);</div><div class="line">  document.write(arguments.length+&quot;&lt;br&gt;&quot;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">doAdd();//NaN   0</div><div class="line">doAdd(1);//NaN  1</div><div class="line">doAdd(1,2);// 3  2</div></pre></td></tr></table></figure></p>
-<h4 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h4><ol>
-<li>定义时希望传入一个参数，但是实际传几个都行</li>
-<li>实际输入几个参数，arguments.length就是几</li>
-<li>若没有传入参数，对应的arguments[i]就是undefined,所以与之相加得NaN。</li>
-</ol>
-<h3 id="函数的传入参数-1"><a href="#函数的传入参数-1" class="headerlink" title="函数的传入参数"></a>函数的传入参数</h3><p>   由于不想c++或java那样严格按照函数定义时的传参要求来调用函数，所以也就没有重载。因为无法通过参数判断，是否重载。若出现两个函数名一样的函数，则后一个覆盖前一个</p>
-<h3 id="函数声明、函数表达式"><a href="#函数声明、函数表达式" class="headerlink" title="函数声明、函数表达式"></a>函数声明、函数表达式</h3><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">//声明</div><div class="line">function sum(n1,n2)&#123;</div><div class="line">    return n1+n2;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//表达式</div><div class="line">var sum=function(n1,n2)&#123;</div><div class="line">    return n1+n2;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</code></pre><h4 id="解释-1"><a href="#解释-1" class="headerlink" title="解释"></a>解释</h4><ol>
-<li>这两个方法除了在函数声明提升时不一样（第二种会出错）其他都一样。</li>
-<li>函数是Function对象，所以可以复制给变量</li>
-<li>函数名就是一个变量，所以函数可以作为值来使用。就可以把一个函数作为参数传递给另一个函数。</li>
-<li>访问函数的指针而不执行函数，则去掉函数名后的（），当参数传递时就是，传递指针。</li>
-<li>也可以在一个函数中返回另一个函数（嵌套），此时带（）。</li>
-</ol>
-<h3 id="每个函数都包括两个方法apply-、call"><a href="#每个函数都包括两个方法apply-、call" class="headerlink" title="每个函数都包括两个方法apply()、call()"></a>每个函数都包括两个方法apply()、call()</h3><h4 id="apply-示例"><a href="#apply-示例" class="headerlink" title="apply()示例"></a>apply()示例</h4><p>Function.apply(obj,args)</p>
-<ol>
-<li>方法能接收两个参数  </li>
-<li>obj：这个对象将代替Function类里this对象</li>
-<li>args：这个是数组，它将作为参数传给Function（args–&gt;arguments）<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;script type=&quot;text/javascript&quot;&gt;   </div><div class="line">/*定义一个人类*/   </div><div class="line">function Person(name,age) &#123;   </div><div class="line">    this.name=name; this.age=age;   </div><div class="line">&#125;   </div><div class="line"> /*定义一个学生类*/   </div><div class="line">function Student(name,age,grade) &#123;   </div><div class="line">    Person.apply(this,arguments); this.grade=grade;   </div><div class="line">&#125;   </div><div class="line">//创建一个学生类   </div><div class="line">var student=new Student(&quot;qian&quot;,21,&quot;一年级&quot;);   </div><div class="line">//测试   </div><div class="line">alert(&quot;name:&quot;+student.name+&quot;\n&quot;+&quot;age:&quot;+student.age+&quot;\n&quot;+&quot;grade:&quot;+student.grade);</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h4 id="解释-2"><a href="#解释-2" class="headerlink" title="解释"></a>解释</h4><ol>
-<li>创建了一个Student类的实例，这个实例就是一个对象，将其赋值给student变量。</li>
-<li>this就指向了student</li>
-<li>arguments对象就是传入的参数组成的数组：[“qian”,”21”,”一年级”]</li>
-<li>Person.apply(this,arguments);里的this替代了Persion类里的this对象，也就是student替代了Persion里的this。那么就有了student.name, student.age。这样student对象就继承了Persion类里面的属性。</li>
-</ol>
-<p><strong>总结：传入的this对象替代一个类的this对象，简单的说就是，传入的this对象去得到另一个类的方法和属性。这里就是用student对象取得了Persion类的方法。</strong></p>
-<h4 id="call（）"><a href="#call（）" class="headerlink" title="call（）"></a>call（）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Person.call(this,name,age);</div></pre></td></tr></table></figure>
-<h4 id="解释-3"><a href="#解释-3" class="headerlink" title="解释"></a>解释</h4><ol>
-<li>和apply一样的，就是接受参数的方式不同，参数要逐个列举出来，直接传递给函数。</li>
-<li>这两种方法是一样的，那个传参方式方便用哪个</li>
-</ol>
-<p>再举一例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var value = [1,2,3,4,5,6,7,8,9];</div><div class="line">var max = Math.max.apply(Math,value);</div></pre></td></tr></table></figure></p>
-<h4 id="解释-4"><a href="#解释-4" class="headerlink" title="解释"></a>解释</h4><p>这是为了得到这个数组的最大值，当然你也可以<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var max=Math.max(1,2,3,4,5,6,7,8,);</div></pre></td></tr></table></figure></p>
-<p>这是一样的结果。但是显然不好，因为给定的是一个数组，而且数字较多，逐一列举并不方便。而 <strong>Math.max()</strong> 只能注意传入所有数值。</p>
-<p>想要简单的直接把一个数组穿进去，就可以调用<strong>apply</strong> 。第一个参数Math为了正确的设置<strong>this</strong>值，就是设置谁去调用这个方法。第二个参数<strong>value</strong>数组里的值会被一个一个的传递给方法。</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
     
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
+    <time datetime="2017-07-20T08:33:27.174Z" itemprop="datePublished">2017-07-20</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2017/07/10/hello-world/" title="Hello World" itemprop="url">
+  
+    <h1 itemprop="name">Hello World</h1>
     
-      <a href="/2017/07/20/js面向对象/" title="" itemprop="url"></a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="yanghanying" target="_blank" itemprop="author">yanghanying</a>
-		
-  <p class="article-time">
-    <time datetime="2017-07-20T08:33:27.174Z" itemprop="datePublished"> 发表于 2017-07-20</time>
+     
+           <p itemprop="description" >Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the </p>
+        
     
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="对JavaScript的面向对象的一些理解"><a href="#对JavaScript的面向对象的一些理解" class="headerlink" title="对JavaScript的面向对象的一些理解"></a>对JavaScript的面向对象的一些理解</h1><p>在其他面型对象语言中，都有类的概念，通过类来创建多个对象，这些对象有相同的属性和方法（在类中规定的）。可以理解为这些对象是同一个类型的。</p>
-<p>但是ECMAScript的面向对象与其他语言有所不同，因为在<strong>JavaScript中并没有类的概念</strong>。这里的对象可以想象成一个无序列表，就是一组名值对，值时数据或函数。那么如何创建对象呢？？</p>
-<h3 id="创建对象的几个方法"><a href="#创建对象的几个方法" class="headerlink" title="创建对象的几个方法"></a>创建对象的几个方法</h3><p><strong>1. Object构造函数或对象字面量</strong></p>
-<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//创建一个persion对象，并为之添加属性和方法</div><div class="line">var persion = new Object();</div><div class="line">persion.name=&quot;yangahnying&quot;;</div><div class="line">persion.age=26;</div><div class="line">persion.job=&quot;student&quot;;</div><div class="line">persion.sayNmae = function()&#123;</div><div class="line">    alert(this.name)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">//字面量方式，与上面是一样的，更加直观</div><div class="line">var persion=&#123;</div><div class="line">    name: &quot;yanghanying&quot;;</div><div class="line">    name: 26;</div><div class="line">    job: &quot;student&quot;;</div><div class="line">    sayName: function()&#123;</div><div class="line">        alert(this.name);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</code></pre><p><strong>顺便提一句：上面的this就是persion这个对象</strong></p>
-<p>==<strong>缺点</strong>：使用同一个接口创建很多对象，会产生大量重复代码==</p>
-<p><strong>2. 工厂模式</strong></p>
-<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">function createPersion(name,age,job)&#123;</div><div class="line">    var o=new Object();</div><div class="line">    o.name=name;</div><div class="line">    o.age=age;</div><div class="line">    o.job=job;</div><div class="line">    o.sayName=function()&#123;</div><div class="line">        alert(this.name);//this指o</div><div class="line">    &#125;;</div><div class="line">    return o;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var p1=createPersion(&quot;yhy&quot;,26,&quot;student&quot;);</div><div class="line">var p2=createPersion(&quot;zgm&quot;,26,&quot;worker&quot;);</div></pre></td></tr></table></figure>
-</code></pre><h4 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h4><p>用一个函数来封装以特定接口创建对象的细节。createPersion（）接受参数来构建Persion对象。每次调用该函数，都返回包含3个属性、1个方法的对象</p>
-<p>==<strong>缺点</strong>：无法知道对象类型==</p>
-<p><strong>3.构造函数模式</strong></p>
-<p>可用构造函数来创建特定类型，像Object()和Array()这样的原生构造函数，也可以自定义创建。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">function Persion(name,age,job)&#123;</div><div class="line">        this.name=name;</div><div class="line">        this.age=age;</div><div class="line">        this.job=job;</div><div class="line">        this.sayName=function()&#123;</div><div class="line">            alert(this.name);//this指创建的对象</div><div class="line">        &#125;;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    var p1=new Persion(&quot;yhy&quot;,26,&quot;student&quot;);</div><div class="line">    var p2=new Persion(&quot;zgm&quot;,26,&quot;worker&quot;)；</div></pre></td></tr></table></figure>
-<h4 id="说明-1"><a href="#说明-1" class="headerlink" title="说明"></a>说明</h4><ol>
-<li>用new操作符来创建对象</li>
-<li>this指向新的对象</li>
-<li>执行构造函数中的代码，为对象添加属性</li>
-<li>返回新对象</li>
-<li>惯例：构造函数以大写字母开头</li>
-</ol>
-<p>==重点：构造函数也是函数==</p>
-<ol>
-<li>用<strong>new</strong>操作符来调用就是构造函数</li>
-<li>不用<strong>new</strong>操作符就是普通函数</li>
-</ol>
-<p>==<strong>缺点</strong>：每次创建实例，就要重新创建方法<strong>sayName()</strong>。 p1和p2都有一个sayName()方法，但他们不是同一个Function实例。==</p>
-<p><strong>4. 原型模式</strong></p>
-<p>每创建一个函数，都会自动有一个prototype属性（原型）——通过调用构造函数创建的对象实例的原型。可以让所有对象实例共享原型对象所包含的属性和方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">function Persion()&#123;</div><div class="line">    Person.prototype.name=&quot;yanghanying&quot;;</div><div class="line">    Person.prototype.age=26;</div><div class="line">    Person.prototype.job=&quot;student&quot;;</div><div class="line">    Person.prototype.sayName=function()&#123;</div><div class="line">        alert(this.name);</div><div class="line">    &#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var persion1= new Person();</div><div class="line">person1.sayName();  //&quot;yangahanying&quot;</div><div class="line"></div><div class="line">var persion2= new Person();</div><div class="line">person2.sayName();  //&quot;yangahanying&quot;</div><div class="line"></div><div class="line">alert(person1.sayName == person2.sayName); //true person1和person2访问的是同一个sayName（）、同一组属性</div></pre></td></tr></table></figure></p>
-<h4 id="说明-2"><a href="#说明-2" class="headerlink" title="说明"></a>说明</h4><ol>
-<li><p>Person构造函数、Person的原型属性、Person的实例之间的关系：</p>
-<ol>
-<li>Person的prototype属性：指向原型对象Person.prototype;</li>
-<li>person.protptype.constructor: 又指回Person</li>
-<li><p>Person的实例person1和person2的内部属性[[Prototype]]: 也指向Person.prototype</p>
-<p>（原型对象中除了包含内部属性constructor外，还有添加的name、age、job、sayName（））</p>
-</li>
-</ol>
-</li>
-<li><p>在读取某对象的某属性时，进行搜索，先搜索对象实例本身，没找到继续找原型对象</p>
-<ol>
-<li>person1.sayName()时，先找实例person1，它自己并没有sayName(),于是继续找pereson1的原型，原型有，于是读取保存在原型中的sayName();</li>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var person1=new Person();</div><div class="line">var person2=new Person();</div><div class="line"></div><div class="line">person1.name=&quot;Greg&quot;;</div><div class="line">alert(person1.name); //Greg</div><div class="line">alert(person2.name); //yanghanying</div></pre></td></tr></table></figure>
-<p>先搜索person1实例本身时就找的了name属性，于是不再搜索其原型</p>
-</li>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var person1=new Person();</div><div class="line">var person2=new Person();</div><div class="line"></div><div class="line">person1.name=&quot;Greg&quot;;</div><div class="line">alert(person1.name); //Greg</div><div class="line">alert(person2.name); //yanghanying</div><div class="line"></div><div class="line">delete person1.name；</div><div class="line">alert(person1.name); //yanghanying</div></pre></td></tr></table></figure>
-<p>用delete操作符删除了person1.name后，再去找name属性，又只能在原型对象中找了</p>
-</li>
-</ol>
-</li>
-<li>那怎么确定一个属性时存在于实例中，还是存在于原型中？用<strong>hasOwnProperty()</strong>(是自己的吗)</li>
-<li>in操作符——对象能够访问指定属性就返回true（只要有，不管是实例中还是原型中）<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">var person1=new Person();</div><div class="line">var person2=new Person();</div><div class="line">alert(person1.hasOwnProperty(&quot;name&quot;)); //false</div><div class="line">alert(&quot;name&quot; in person1); //true</div><div class="line"></div><div class="line">person1.name=&quot;Greg&quot;;</div><div class="line">alert(person1.name); //Greg</div><div class="line">alert(person2.name); //yanghanying</div><div class="line">alert(person1.hasOwnProperty(&quot;name&quot;)); //true</div><div class="line">alert(person2.hasOwnProperty(&quot;name&quot;)); //false</div><div class="line">alert(&quot;name&quot; in person1); //true</div><div class="line">alert(&quot;name&quot; in person2); //true</div><div class="line"></div><div class="line">delete person1.name；</div><div class="line">alert(person1.name); //yanghanying</div><div class="line">alert(person1.hasOwnProperty(&quot;name&quot;)); //false</div><div class="line">alert(&quot;name&quot; in person1); //true</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>只有person1重写name属性时，它自己才有，hasOwnProperty()才返回true。</p>
-<ol>
-<li>原型动态性–原型上的修改能立即在实例上反映出来<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var person1=new Person();</div><div class="line"></div><div class="line">Person.prototype.Hello=function()&#123;</div><div class="line">    alert(&quot;hello&quot;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">person1.Hello(); //hello</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>虽然在原型中添加方法之前就创建了实例，但这个实例让可以方法该方法。因为person.Hello()是，会搜索实例本身，没有就去搜索原型，就有了。</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2017/07/10/hello-world/" title="Hello World" itemprop="url">Hello World</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="yanghanying" target="_blank" itemprop="author">yanghanying</a>
-		
-  <p class="article-time">
-    <time datetime="2017-07-10T05:48:00.492Z" itemprop="datePublished"> 发表于 2017-07-10</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
+    <time datetime="2017-07-10T05:48:00.492Z" itemprop="datePublished">2017-07-10</time>
+  </a>
+</section>
 
 
 
@@ -360,6 +165,12 @@
           <li>
             
             	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://hexo.io" target="_blank" title="Hexo">Hexo</a>
             
           </li>
         
