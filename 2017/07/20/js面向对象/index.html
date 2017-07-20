@@ -11,12 +11,16 @@
     
 
     
-    <meta property="og:type" content="website">
+    <meta name="description" content="对JavaScript的面向对象的一些理解在其他面型对象语言中，都有类的概念，通过类来创建多个对象，这些对象有相同的属性和方法（在类中规定的）。可以理解为这些对象是同一个类型的。 但是ECMAScript的面向对象与其他语言有所不同，因为在JavaScript中并没有类的概念。这里的对象可以想象成一个无序列表，就是一组名值对，值时数据或函数。那么如何创建对象呢？？ 创建对象的几个方法1. Obje">
+<meta property="og:type" content="article">
 <meta property="og:title" content="一只菜鸟的博客">
-<meta property="og:url" content="https://yanghanying.github.io/index.html">
+<meta property="og:url" content="https://yanghanying.github.io/2017/07/20/js面向对象/index.html">
 <meta property="og:site_name" content="一只菜鸟的博客">
+<meta property="og:description" content="对JavaScript的面向对象的一些理解在其他面型对象语言中，都有类的概念，通过类来创建多个对象，这些对象有相同的属性和方法（在类中规定的）。可以理解为这些对象是同一个类型的。 但是ECMAScript的面向对象与其他语言有所不同，因为在JavaScript中并没有类的概念。这里的对象可以想象成一个无序列表，就是一组名值对，值时数据或函数。那么如何创建对象呢？？ 创建对象的几个方法1. Obje">
+<meta property="og:updated_time" content="2017-07-20T08:41:47.723Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一只菜鸟的博客">
+<meta name="twitter:description" content="对JavaScript的面向对象的一些理解在其他面型对象语言中，都有类的概念，通过类来创建多个对象，这些对象有相同的属性和方法（在类中规定的）。可以理解为这些对象是同一个类型的。 但是ECMAScript的面向对象与其他语言有所不同，因为在JavaScript中并没有类的概念。这里的对象可以想象成一个无序列表，就是一组名值对，值时数据或函数。那么如何创建对象呢？？ 创建对象的几个方法1. Obje">
 
     
     <link rel="alternative" href="/atom.xml" title="一只菜鸟的博客" type="application/atom+xml">
@@ -74,99 +78,10 @@
 </div>
     </header>
     <div id="container">
-      <div id="main">
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2017/07/20/js函数/" title="" itemprop="url"></a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="yanghanying" target="_blank" itemprop="author">yanghanying</a>
-		
-  <p class="article-time">
-    <time datetime="2017-07-20T08:42:43.035Z" itemprop="datePublished"> 发表于 2017-07-20</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="对JavaScript中函数的一些理解"><a href="#对JavaScript中函数的一些理解" class="headerlink" title="对JavaScript中函数的一些理解"></a>对JavaScript中函数的一些理解</h1><h3 id="函数的传入参数"><a href="#函数的传入参数" class="headerlink" title="函数的传入参数"></a>函数的传入参数</h3><p>   虽然在函数定义时会规定传入的参数，但在实际使用时并不在意这个规定（个数和类型），++可以任意传入参数++。因为在ECMAScript中参数使用内部的==argument对象==（与数组类似）表示的。函数体通过argument对象来访问数组，获取参数。在调用时实际上传入了几个，都会被装进这个数组（EMCAScript中的数组的每一项都可以保存任何类型）。传入的第一个参数是argument[0]…,实际传入了几个，通过访问argument.length访问。<br>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">  function doAdd(n)&#123;</div><div class="line">  alert(arguments[0]+arguments[1]);</div><div class="line">  document.write(arguments.length+&quot;&lt;br&gt;&quot;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">doAdd();//NaN   0</div><div class="line">doAdd(1);//NaN  1</div><div class="line">doAdd(1,2);// 3  2</div></pre></td></tr></table></figure></p>
-<h4 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h4><ol>
-<li>定义时希望传入一个参数，但是实际传几个都行</li>
-<li>实际输入几个参数，arguments.length就是几</li>
-<li>若没有传入参数，对应的arguments[i]就是undefined,所以与之相加得NaN。</li>
-</ol>
-<h3 id="函数的传入参数-1"><a href="#函数的传入参数-1" class="headerlink" title="函数的传入参数"></a>函数的传入参数</h3><p>   由于不想c++或java那样严格按照函数定义时的传参要求来调用函数，所以也就没有重载。因为无法通过参数判断，是否重载。若出现两个函数名一样的函数，则后一个覆盖前一个</p>
-<h3 id="函数声明、函数表达式"><a href="#函数声明、函数表达式" class="headerlink" title="函数声明、函数表达式"></a>函数声明、函数表达式</h3><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">//声明</div><div class="line">function sum(n1,n2)&#123;</div><div class="line">    return n1+n2;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//表达式</div><div class="line">var sum=function(n1,n2)&#123;</div><div class="line">    return n1+n2;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</code></pre><h4 id="解释-1"><a href="#解释-1" class="headerlink" title="解释"></a>解释</h4><ol>
-<li>这两个方法除了在函数声明提升时不一样（第二种会出错）其他都一样。</li>
-<li>函数是Function对象，所以可以复制给变量</li>
-<li>函数名就是一个变量，所以函数可以作为值来使用。就可以把一个函数作为参数传递给另一个函数。</li>
-<li>访问函数的指针而不执行函数，则去掉函数名后的（），当参数传递时就是，传递指针。</li>
-<li>也可以在一个函数中返回另一个函数（嵌套），此时带（）。</li>
-</ol>
-<h3 id="每个函数都包括两个方法apply-、call"><a href="#每个函数都包括两个方法apply-、call" class="headerlink" title="每个函数都包括两个方法apply()、call()"></a>每个函数都包括两个方法apply()、call()</h3><h4 id="apply-示例"><a href="#apply-示例" class="headerlink" title="apply()示例"></a>apply()示例</h4><p>Function.apply(obj,args)</p>
-<ol>
-<li>方法能接收两个参数  </li>
-<li>obj：这个对象将代替Function类里this对象</li>
-<li>args：这个是数组，它将作为参数传给Function（args–&gt;arguments）<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;script type=&quot;text/javascript&quot;&gt;   </div><div class="line">/*定义一个人类*/   </div><div class="line">function Person(name,age) &#123;   </div><div class="line">    this.name=name; this.age=age;   </div><div class="line">&#125;   </div><div class="line"> /*定义一个学生类*/   </div><div class="line">function Student(name,age,grade) &#123;   </div><div class="line">    Person.apply(this,arguments); this.grade=grade;   </div><div class="line">&#125;   </div><div class="line">//创建一个学生类   </div><div class="line">var student=new Student(&quot;qian&quot;,21,&quot;一年级&quot;);   </div><div class="line">//测试   </div><div class="line">alert(&quot;name:&quot;+student.name+&quot;\n&quot;+&quot;age:&quot;+student.age+&quot;\n&quot;+&quot;grade:&quot;+student.grade);</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h4 id="解释-2"><a href="#解释-2" class="headerlink" title="解释"></a>解释</h4><ol>
-<li>创建了一个Student类的实例，这个实例就是一个对象，将其赋值给student变量。</li>
-<li>this就指向了student</li>
-<li>arguments对象就是传入的参数组成的数组：[“qian”,”21”,”一年级”]</li>
-<li>Person.apply(this,arguments);里的this替代了Persion类里的this对象，也就是student替代了Persion里的this。那么就有了student.name, student.age。这样student对象就继承了Persion类里面的属性。</li>
-</ol>
-<p><strong>总结：传入的this对象替代一个类的this对象，简单的说就是，传入的this对象去得到另一个类的方法和属性。这里就是用student对象取得了Persion类的方法。</strong></p>
-<h4 id="call（）"><a href="#call（）" class="headerlink" title="call（）"></a>call（）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Person.call(this,name,age);</div></pre></td></tr></table></figure>
-<h4 id="解释-3"><a href="#解释-3" class="headerlink" title="解释"></a>解释</h4><ol>
-<li>和apply一样的，就是接受参数的方式不同，参数要逐个列举出来，直接传递给函数。</li>
-<li>这两种方法是一样的，那个传参方式方便用哪个</li>
-</ol>
-<p>再举一例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var value = [1,2,3,4,5,6,7,8,9];</div><div class="line">var max = Math.max.apply(Math,value);</div></pre></td></tr></table></figure></p>
-<h4 id="解释-4"><a href="#解释-4" class="headerlink" title="解释"></a>解释</h4><p>这是为了得到这个数组的最大值，当然你也可以<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var max=Math.max(1,2,3,4,5,6,7,8,);</div></pre></td></tr></table></figure></p>
-<p>这是一样的结果。但是显然不好，因为给定的是一个数组，而且数字较多，逐一列举并不方便。而 <strong>Math.max()</strong> 只能注意传入所有数值。</p>
-<p>想要简单的直接把一个数组穿进去，就可以调用<strong>apply</strong> 。第一个参数Math为了正确的设置<strong>this</strong>值，就是设置谁去调用这个方法。第二个参数<strong>value</strong>数组里的值会被一个一个的传递给方法。</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
   <h1 itemprop="name">
     
       <a href="/2017/07/20/js面向对象/" title="" itemprop="url"></a>
@@ -180,9 +95,16 @@
     
   </p>
 </header>
-    <div class="article-content">
-        
-        <h1 id="对JavaScript的面向对象的一些理解"><a href="#对JavaScript的面向对象的一些理解" class="headerlink" title="对JavaScript的面向对象的一些理解"></a>对JavaScript的面向对象的一些理解</h1><p>在其他面型对象语言中，都有类的概念，通过类来创建多个对象，这些对象有相同的属性和方法（在类中规定的）。可以理解为这些对象是同一个类型的。</p>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#对JavaScript的面向对象的一些理解"><span class="toc-number">1.</span> <span class="toc-text">对JavaScript的面向对象的一些理解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建对象的几个方法"><span class="toc-number">1.0.1.</span> <span class="toc-text">创建对象的几个方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#说明"><span class="toc-number">1.0.1.1.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#说明-1"><span class="toc-number">1.0.1.2.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#说明-2"><span class="toc-number">1.0.1.3.</span> <span class="toc-text">说明</span></a></li></ol></li></ol></li></ol></li></ol>
+		
+		</div>
+		
+		<h1 id="对JavaScript的面向对象的一些理解"><a href="#对JavaScript的面向对象的一些理解" class="headerlink" title="对JavaScript的面向对象的一些理解"></a>对JavaScript的面向对象的一些理解</h1><p>在其他面型对象语言中，都有类的概念，通过类来创建多个对象，这些对象有相同的属性和方法（在类中规定的）。可以理解为这些对象是同一个类型的。</p>
 <p>但是ECMAScript的面向对象与其他语言有所不同，因为在<strong>JavaScript中并没有类的概念</strong>。这里的对象可以想象成一个无序列表，就是一组名值对，值时数据或函数。那么如何创建对象呢？？</p>
 <h3 id="创建对象的几个方法"><a href="#创建对象的几个方法" class="headerlink" title="创建对象的几个方法"></a>创建对象的几个方法</h3><p><strong>1. Object构造函数或对象字面量</strong></p>
 <pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//创建一个persion对象，并为之添加属性和方法</div><div class="line">var persion = new Object();</div><div class="line">persion.name=&quot;yangahnying&quot;;</div><div class="line">persion.age=26;</div><div class="line">persion.job=&quot;student&quot;;</div><div class="line">persion.sayNmae = function()&#123;</div><div class="line">    alert(this.name)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -244,14 +166,9 @@
 </li>
 </ol>
 <p>虽然在原型中添加方法之前就创建了实例，但这个实例让可以方法该方法。因为person.Hello()是，会搜索实例本身，没有就去搜索原型，就有了。</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
+  
+	</div>
+		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
 
@@ -259,82 +176,52 @@
 
 
 
-
-<div class="comments-count">
+	<div class="article-share" id="share">
 	
-</div>
+	  <div data-url="https://yanghanying.github.io/2017/07/20/js面向对象/" data-title="一只菜鸟的博客" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
 
 </footer>
 
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2017/07/10/hello-world/" title="Hello World" itemprop="url">Hello World</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="yanghanying" target="_blank" itemprop="author">yanghanying</a>
-		
-  <p class="article-time">
-    <time datetime="2017-07-10T05:48:00.492Z" itemprop="datePublished"> 发表于 2017-07-10</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-</div>
-
-
-
-
-<div class="comments-count">
+   	       
+	</article>
 	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/07/20/js函数/" title="">
+  <strong>上一篇：</strong><br/>
+  <span>
+  (no title)</span>
+</a>
 </div>
 
-</footer>
 
-
-    </article>
-
-
-
-
-
-
-
+<div class="next">
+<a href="/2017/07/10/hello-world/"  title="Hello World">
+ <strong>下一篇：</strong><br/> 
+ <span>Hello World
+</span>
+</a>
 </div>
+
+</nav>
+
+	
+
+
+</div>  
       <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#对JavaScript的面向对象的一些理解"><span class="toc-number">1.</span> <span class="toc-text">对JavaScript的面向对象的一些理解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建对象的几个方法"><span class="toc-number">1.0.1.</span> <span class="toc-text">创建对象的几个方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#说明"><span class="toc-number">1.0.1.1.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#说明-1"><span class="toc-number">1.0.1.2.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#说明-2"><span class="toc-number">1.0.1.3.</span> <span class="toc-text">说明</span></a></li></ol></li></ol></li></ol></li></ol>
+ 
+  </div>
 
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
@@ -467,12 +354,89 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
         
     }
   });
 });
 </script>
 
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
 
 
 
@@ -543,4 +507,4 @@ var _hmt = _hmt || [];
 <!-- Tiny_search End -->
 
   </body>
- </html>
+</html>
